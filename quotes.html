@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dynamic Quote List</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap Icons CSS (alternative source) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.19.0/dist/font/bootstrap-icons.css">
+    <!-- Clipboard.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quote-card {
+            width: 100%;
+            margin: 20px 0;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .share-icon {
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .copy-text {
+            margin-left: 8px;
+        }
+
+        .pastel-color {
+            background-color: #ffbbcc; /* Default pastel color */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="quoteContainer">
+    <!-- Quotes will be dynamically inserted here -->
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Clipboard.js script -->
+<script>
+    function copyToClipboard() {
+        var clipboard = new ClipboardJS('.share-icon');
+        clipboard.on('success', function (e) {
+            alert('Quotes copied to clipboard!');
+            e.clearSelection();
+        });
+        clipboard.on('error', function (e) {
+            alert('Error copying quotes. Please try again.');
+        });
+    }
+</script>
+
+<!-- Script to generate a random pastel background color for each quote card -->
+<script>
+    function getRandomPastelColor() {
+        var letters = '89ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * letters.length)];
+        }
+        return color;
+    }
+
+    // Function to fetch a random quote from the Quotable API
+    function fetchRandomQuote() {
+        fetch('https://api.quotable.io/random')
+            .then(response => response.json())
+            .then(data => {
+                insertQuote(data.content, data.author);
+            })
+            .catch(error => console.error('Error fetching quote:', error));
+    }
+
+    // Function to insert a quote into the quote container
+    function insertQuote(content, author) {
+        var quoteCard = document.createElement('div');
+        quoteCard.className = 'quote-card pastel-color';
+        quoteCard.innerHTML = `
+            <blockquote class="blockquote">
+                <p class="mb-0">${content}</p>
+                <footer class="blockquote-footer">${author}</footer>
+            </blockquote>
+            <div class="share-icon" data-clipboard-target="#quoteContainer" onclick="copyToClipboard()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                    <path
+                        d="M12.5 2a.5.5 0 0 1 .5.5V14a2.5 2.5 0 0 1-5 0V2.5a.5.5 0 0 1 1 0V14a1.5 1.5 0 0 0 3 0V2.5a.5.5 0 0 1 .5-.5z"/>
+                    <path
+                        d="M11.5 0a.5.5 0 0 1 .5.5V2h1a2 2 0 0 1 2 2V14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 1 0V2h6V.5a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+                <span class="copy-text">Copy Quotes</span>
+            </div>
+        `;
+
+        // Apply the random pastel background color to the quote card
+        quoteCard.style.backgroundColor = getRandomPastelColor();
+
+        // Append the quote card to the quote container
+        document.getElementById('quoteContainer').appendChild(quoteCard);
+    }
+
+    // Fetch and insert 100 random quotes
+    for (var i = 0; i < 100; i++) {
+        fetchRandomQuote();
+    }
+</script>
+</body>
+</html>
