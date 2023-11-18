@@ -47,7 +47,7 @@
         <!-- Repeat the following app-card section for each app -->
         <div
           class="app-card"
-          onclick="redirectToPlayStore('https://play.google.com/store/apps/details?id=com.ig.moto.racing')"
+          onclick="redirectToPlayStore('com.ig.moto.racing')"
         >
           <img
             src="https://play-lh.googleusercontent.com/A9yWoapR847rL-ZchAslvlsb7HOBoPRP5JpNKMFndx7kP1TyMHFi_0qzTerC6t8-d7s=s48"
@@ -59,7 +59,18 @@
 
         <div
           class="app-card"
-          onclick="redirectToPlayStore('market://details?id=com.ig.moto.racing')"
+          onclick="redirectToPlayStore('com.jura.robot.battle.transformation')"
+        >
+          <img
+            src="https://play-lh.googleusercontent.com/HbscZc3tZlT1mYPdfAQWQ3F_KR49K3OhEGUJmJ5a5azIxPIRLcjyGV452BDZPp1iPw=w526-h296"
+            alt="App Icon 2"
+            class="app-icon"
+          />
+          <h5>Your App Name 2</h5>
+        </div>
+        <div
+          class="app-card"
+          onclick="redirectToPlayStore('your.app.package.name2')"
         >
           <img
             src="path/to/your/app-icon2.png"
@@ -70,7 +81,7 @@
         </div>
         <div
           class="app-card"
-          onclick="redirectToPlayStore('https://play.google.com/store/apps/details?id=com.ig.moto.racing')"
+          onclick="redirectToPlayStore('your.app.package.name2')"
         >
           <img
             src="path/to/your/app-icon2.png"
@@ -81,7 +92,7 @@
         </div>
         <div
           class="app-card"
-          onclick="redirectToPlayStore('YourPlayStoreLink2')"
+          onclick="redirectToPlayStore('your.app.package.name2')"
         >
           <img
             src="path/to/your/app-icon2.png"
@@ -92,18 +103,7 @@
         </div>
         <div
           class="app-card"
-          onclick="redirectToPlayStore('YourPlayStoreLink2')"
-        >
-          <img
-            src="path/to/your/app-icon2.png"
-            alt="App Icon 2"
-            class="app-icon"
-          />
-          <h5>Your App Name 2</h5>
-        </div>
-        <div
-          class="app-card"
-          onclick="redirectToPlayStore('YourPlayStoreLink2')"
+          onclick="redirectToPlayStore('your.app.package.name2')"
         >
           <img
             src="path/to/your/app-icon2.png"
@@ -123,8 +123,13 @@
 
     <!-- Script to open Google Play Store on icon click -->
     <script>
-      function redirectToPlayStore(playStoreLink) {
-        window.location.href = playStoreLink;
+      function redirectToPlayStore(packageName) {
+        try {
+          window.location.href = "market://details?id=" + packageName;
+        } catch (error) {
+          window.location.href =
+            "https://play.google.com/store/apps/details?id=" + packageName;
+        }
       }
     </script>
   </body>
