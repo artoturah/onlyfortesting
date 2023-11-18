@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>App Promotion</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        padding: 20px;
+      }
+
+      .app-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px;
+        text-align: center;
+      }
+
+      .app-card {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .app-icon {
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center mb-4">Download Our Apps</h1>
+
+      <div class="app-container">
+        <!-- Repeat the following app-card section for each app -->
+        <div
+          class="app-card"
+          onclick="redirectToPlayStore('https://play.google.com/store/apps/details?id=com.ig.moto.racing')"
+        >
+          <img
+            src="https://play-lh.googleusercontent.com/A9yWoapR847rL-ZchAslvlsb7HOBoPRP5JpNKMFndx7kP1TyMHFi_0qzTerC6t8-d7s=s48"
+            alt="App Icon 1"
+            class="app-icon"
+          />
+          <h5>Your App Name 1</h5>
+        </div>
+
+        <div
+          class="app-card"
+          onclick="redirectToPlayStore('YourPlayStoreLink2')"
+        >
+          <img
+            src="path/to/your/app-icon2.png"
+            alt="App Icon 2"
+            class="app-icon"
+          />
+          <h5>Your App Name 2</h5>
+        </div>
+        <div
+          class="app-card"
+          onclick="redirectToPlayStore('https://play.google.com/store/apps/details?id=com.ig.moto.racing')"
+        >
+          <img
+            src="path/to/your/app-icon2.png"
+            alt="App Icon 2"
+            class="app-icon"
+          />
+          <h5>Your App Name 2</h5>
+        </div>
+        <div
+          class="app-card"
+          onclick="redirectToPlayStore('YourPlayStoreLink2')"
+        >
+          <img
+            src="path/to/your/app-icon2.png"
+            alt="App Icon 2"
+            class="app-icon"
+          />
+          <h5>Your App Name 2</h5>
+        </div>
+        <div
+          class="app-card"
+          onclick="redirectToPlayStore('YourPlayStoreLink2')"
+        >
+          <img
+            src="path/to/your/app-icon2.png"
+            alt="App Icon 2"
+            class="app-icon"
+          />
+          <h5>Your App Name 2</h5>
+        </div>
+        <div
+          class="app-card"
+          onclick="redirectToPlayStore('YourPlayStoreLink2')"
+        >
+          <img
+            src="path/to/your/app-icon2.png"
+            alt="App Icon 2"
+            class="app-icon"
+          />
+          <h5>Your App Name 2</h5>
+        </div>
+        <!-- Repeat the above app-card section for each additional app -->
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script to open Google Play Store on icon click -->
+    <script>
+      function redirectToPlayStore(playStoreLink) {
+        window.location.href = playStoreLink;
+      }
+    </script>
+  </body>
+</html>
